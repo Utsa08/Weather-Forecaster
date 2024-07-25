@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import Weather from "./components/WeatherCard";
+import axios from "axios";
 
-function App() {
+axios.defaults.baseURL = "https://api.openweathermap.org/data/2.5/forecast";
+axios.defaults.params = {};
+axios.defaults.params["appid"] = process.env.API_KEY;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="">
+      <Routes>
+        <Route path="/" element = {<Weather />} />
+        <Route path="/:location" element = {<Weather />} />
+      </Routes>
     </div>
   );
 }
